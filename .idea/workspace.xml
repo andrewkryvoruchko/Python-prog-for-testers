@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9452346c-c629-48d9-9f97-fc9e3d19900e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/fixure/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/fixure/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_add_address.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_add_address.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fixure/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fixure/session.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
