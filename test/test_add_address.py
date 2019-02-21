@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from address import Address
-from application import Application
+from model.address import Address
+from fixure.application import Application
 import pytest
 
 @pytest.fixture
