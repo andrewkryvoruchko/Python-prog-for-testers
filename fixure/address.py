@@ -1,10 +1,8 @@
-
-
-
+import time
 
 class AddressHelper:
 
-    def __init__(self, app):
+    def __init__(self, app): # app принимает объект self класса Application
         self.app = app
 
     def information(self, address):
@@ -32,5 +30,13 @@ class AddressHelper:
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Add an address']").click()
         self.information(address)
+
+    def delete_first_address(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
+        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Delete']").click()
+        time.sleep(2)
+        alert = wd.switch_to_alert()
+        alert.accept()
 
 

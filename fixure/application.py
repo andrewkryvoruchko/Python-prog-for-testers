@@ -6,10 +6,10 @@ from fixure.address import AddressHelper
 class Application:
 
     def __init__(self):
-        self.wd = webdriver.Chrome()
+        self.wd = webdriver.Chrome(desired_capabilities={"chromeOptions": {"args": ["--start-maximized"]}})
         self.wd.implicitly_wait(30)
         self.session = SessionHelper(self) # помошнику передается объект класса Application
-        self.address = AddressHelper(self) #
+        self.address = AddressHelper(self) # помошнику передается объект класса Application
 
     def distroy(self):
         wd = self.wd

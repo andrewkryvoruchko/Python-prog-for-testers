@@ -1,13 +1,6 @@
 # -*- coding: utf-8 -*-
-from model.address import Address
-from fixure.application import Application
-import pytest
 
-@pytest.fixture
-def app(request):
-    fixture = Application()
-    request.addfinalizer(fixture.distroy)
-    return fixture
+from model.address import Address
 
 def test_add_first_address(app):
     app.session.login(username="andrew1973@gmail.com", password="giovanni")
