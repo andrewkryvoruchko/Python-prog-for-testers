@@ -3,8 +3,8 @@
 
 class Address:
 
-    def __init__(self, first_name, last_name, company, address,zipcode,
-                 city,country, home_phone, mobile_phone, state, assign):
+    def __init__(self, first_name=None, last_name=None, company=None, address=None,zipcode=None,
+                 city=None, country=None, home_phone=None, mobile_phone=None, state=None, assign=None):
 
         self.first_name = first_name
         self.last_name = last_name

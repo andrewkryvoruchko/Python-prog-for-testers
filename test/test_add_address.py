@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import time
 from model.address import Address
 
 def test_add_first_address(app):
@@ -11,8 +11,9 @@ def test_add_first_address(app):
 
 def test_add_second_address(app):
     app.session.login(username="andrew1973@gmail.com", password="giovanni")
-    app.address.add_new(Address(first_name="andrew", last_name="kriv", company="IT", address="Lvivska Ploshia 7/20",
-                                zipcode="67890", city="Kyiv", country="Ukrane", home_phone="789123",
-                                mobile_phone="789123", state="Киевская область", assign="andr"))
+    app.address.add_new(Address(first_name="andrew", last_name="kriv", company="IT", address="George Washington 20",
+                                zipcode="67890", city="Columbus", country="США", home_phone="789123",
+                                mobile_phone="789123", state="Alabama", assign="MUCHO"))
+   # time.sleep(30)
     app.session.logout()
 
