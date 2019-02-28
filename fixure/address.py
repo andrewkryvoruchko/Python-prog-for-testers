@@ -34,7 +34,7 @@ class AddressHelper:
 
     def submit_address(self):
         wd = self.app.wd
-        time.sleep(2)
+        #time.sleep(2)
         wd.find_element_by_id("submitAddress").click()
 
     def add(self, address):
@@ -46,7 +46,6 @@ class AddressHelper:
 
     def add_new(self, address):
         wd = self.app.wd
-        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Add an address']").click()
         self.data(address)
         self.submit_address()
@@ -66,7 +65,7 @@ class AddressHelper:
         wd = self.app.wd
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Delete']").click()
-        time.sleep(2)
+        #time.sleep(2)
         alert = wd.switch_to_alert()
         alert.accept()
 
