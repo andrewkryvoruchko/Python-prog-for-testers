@@ -5,25 +5,28 @@ from fixure.application import Application
 import pytest
 
 fixture = None
-
+# вынесение метода login из тестов в фикстуру делает его общим для всей сессии
+# проверка с условным операторм if говорит если фикстура есть то используй ее
+# но плюс к этому добавляет стабильность, если она ошибочно упала создай новую
 @pytest.fixture
-def app(request):
+def app():
     global fixture
     if fixture is None:
         fixture = Application()
-        fixture.session.login(username="andrew1973@gmail.com", password="giovanni")
     else:
-        if not fixture.is_valid():
+        if not fixture.is_valid(): # если возвращается False создай фикстуру заново (запусти браузер)
             fixture = Application()
-            fixture.session.login(username="andrew1973@gmail.com", password="giovanni")
+    fixture.session.ensure_login(username="andrew1973@gmail.com", password="giovanni")
     return fixture  # возвращает объект Application в тест
 
-# благодаря scope="session" фикстура сработет один раз для всей сессии запущеных тестов
-# благодаря autouse=True неуказанная в тестах фиктсура сработает (для pytest)
+# для сохранения оптимизации разделяем инициализацию и финализацию
+# благодаря scope="session" финализирующая фикстура сработет один раз в самом конце для всей сессии
+# запущеных тестов, без этого выражения финализатор будет разрушать всю фиктруру в конце каждого теста
+# благодаря autouse=True неуказанная в параметрах тестов фиктсура все равно сработает (для pytest)
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
     def fin():
-        fixture.session.logout()
+        fixture.session.ensure_logout()
         fixture.distroy()
     request.addfinalizer(fin)
     return fixture  # возвращает объект Application в тест

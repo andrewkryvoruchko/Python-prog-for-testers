@@ -12,10 +12,10 @@ class Application:
         self.address = AddressHelper(self) # помошнику передается объект класса Application
 
     def is_valid(self):
-        try:
-            self.wd.current_url
+        try:                    # блок с перехватом исключений
+            self.wd.current_url # перехватываем исключение
             return True
-        except:
+        except:                 # прописывается обработчик
             return False
 
     def distroy(self):

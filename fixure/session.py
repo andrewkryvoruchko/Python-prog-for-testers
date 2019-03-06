@@ -18,3 +18,32 @@ class SessionHelper:
         wd = self.app.wd
         wd.find_element_by_xpath("//div[@class='row']//a[text()='Выйти']").click()
 
+    def is_logged_in(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_xpath("//div[@class='row']//a[text()='Выйти']")) > 0
+
+    def is_logged_in_as(self, session_name):
+        wd = self.app.wd
+        return wd.find_element_by_xpath(
+            "//header[@id='header']//a[@title='Просмотреть мою учетную запись покупателя']/span"
+            ).text == ""+session_name+"" # выполняется проверка на соответствие имен
+
+    def ensure_logout(self):
+        if self.is_logged_in():
+            self.logout()
+
+    def ensure_login(self, username, password):
+        wd = self.app.wd
+        if self.is_logged_in():
+            session_name = wd.find_element_by_xpath(
+                "//header[@id='header']//a[@title='Просмотреть мою учетную запись покупателя']/span"
+                ).text
+            if self.is_logged_in_as(session_name):
+                return
+            else:
+                self.logout()
+        self.login(username, password)
+
+
+
+

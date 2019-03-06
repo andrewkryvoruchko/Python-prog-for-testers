@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9452346c-c629-48d9-9f97-fc9e3d19900e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fixure/address.py" beforeDir="false" afterPath="$PROJECT_DIR$/fixure/address.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fixure/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/fixure/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_add_address.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_add_address.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_del_address.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_del_address.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_modify_address.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_modify_address.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fixure/session.py" beforeDir="false" afterPath="$PROJECT_DIR$/fixure/session.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/test_add_address.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+            <state relative-caret-position="432">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -44,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/conftest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="21" column="77" selection-start-line="21" selection-start-column="77" selection-end-line="21" selection-end-column="77" />
+            <state relative-caret-position="-164">
+              <caret line="3" column="42" lean-forward="true" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -56,7 +54,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fixure/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
+            <state relative-caret-position="511">
               <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
               <folding>
                 <element signature="e#24#54#0" expanded="true" />
@@ -68,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fixure/session.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+            <state relative-caret-position="783">
+              <caret line="41" column="22" lean-forward="true" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -77,7 +75,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fixure/address.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
+            <state relative-caret-position="729">
               <caret line="48" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -113,16 +111,16 @@
         <option value="$PROJECT_DIR$/address.py" />
         <option value="$PROJECT_DIR$/application.py" />
         <option value="$PROJECT_DIR$/test_add_address.py" />
-        <option value="$PROJECT_DIR$/fixure/session.py" />
         <option value="$PROJECT_DIR$/test/conttest.py" />
         <option value="$PROJECT_DIR$/conttest.py" />
         <option value="$PROJECT_DIR$/model/address.py" />
         <option value="$PROJECT_DIR$/test/test_del_address.py" />
         <option value="$PROJECT_DIR$/test/test_modify_address.py" />
         <option value="$PROJECT_DIR$/fixure/address.py" />
-        <option value="$PROJECT_DIR$/test/test_add_address.py" />
-        <option value="$PROJECT_DIR$/conftest.py" />
         <option value="$PROJECT_DIR$/fixure/application.py" />
+        <option value="$PROJECT_DIR$/conftest.py" />
+        <option value="$PROJECT_DIR$/test/test_add_address.py" />
+        <option value="$PROJECT_DIR$/fixure/session.py" />
       </list>
     </option>
   </component>
@@ -276,24 +274,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytest_in_test_modify_address_py - 2019.02.27 at 21h 22m 49s.xml">
-      <configuration name="pytest in test_modify_address.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_add_address_py - 2019.02.27 at 21h 23m 26s.xml">
-      <configuration name="pytest in test_add_address.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_modify_address_py - 2019.02.27 at 21h 24m 52s.xml">
-      <configuration name="pytest in test_modify_address.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_add_address_py - 2019.02.27 at 21h 26m 40s.xml">
-      <configuration name="pytest in test_add_address.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test_modify_address_py - 2019.02.27 at 21h 55m 50s.xml">
-      <configuration name="pytest in test_modify_address.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="pytest_in_test - 2019.02.27 at 21h 57m 33s.xml">
-      <configuration name="pytest in test" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytest_in_test_add_address_py - 2019.02.28 at 21h 26m 06s.xml">
       <configuration name="pytest in test_add_address.py" configurationId="tests" />
     </history-entry>
@@ -304,6 +284,24 @@
       <configuration name="pytest in test_add_address.py" configurationId="tests" />
     </history-entry>
     <history-entry file="pytest_in_test_add_address_py - 2019.02.28 at 22h 18m 59s.xml">
+      <configuration name="pytest in test_add_address.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_add_address_py - 2019.02.28 at 22h 46m 43s.xml">
+      <configuration name="pytest in test_add_address.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_add_address_py - 2019.03.04 at 21h 11m 50s.xml">
+      <configuration name="pytest in test_add_address.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_add_address_py - 2019.03.04 at 21h 17m 57s.xml">
+      <configuration name="pytest in test_add_address.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_add_address_py - 2019.03.04 at 22h 02m 29s.xml">
+      <configuration name="pytest in test_add_address.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_add_address_py - 2019.03.04 at 22h 19m 49s.xml">
+      <configuration name="pytest in test_add_address.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_add_address_py - 2019.03.06 at 21h 39m 04s.xml">
       <configuration name="pytest in test_add_address.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -334,10 +332,10 @@
     <entry file="file://$PROJECT_DIR$/test/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/address.py">
+    <entry file="file://$PROJECT_DIR$/test/test_del_address.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="108">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -348,16 +346,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_del_address.py">
+    <entry file="file://$PROJECT_DIR$/model/address.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="270">
+          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixure/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="41" column="22" lean-forward="true" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conftest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-164">
+          <caret line="3" column="42" lean-forward="true" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fixure/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+          <folding>
+            <element signature="e#24#54#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fixure/address.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
+        <state relative-caret-position="729">
           <caret line="48" selection-start-line="48" selection-end-line="48" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -367,32 +389,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_add_address.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fixure/session.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fixure/application.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding>
-            <element signature="e#24#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/conftest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="21" column="77" selection-start-line="21" selection-start-column="77" selection-end-line="21" selection-end-column="77" />
+        <state relative-caret-position="432">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
