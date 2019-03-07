@@ -20,7 +20,10 @@ class SessionHelper:
 
     def is_logged_in(self):
         wd = self.app.wd
-        return len(wd.find_elements_by_xpath("//div[@class='row']//a[text()='Выйти']")) > 0
+        wd.implicitly_wait(1)
+        ex = len(wd.find_elements_by_xpath("//div[@class='row']//a[text()='Выйти']")) > 0
+        wd.implicitly_wait(20)
+        return ex
 
     def is_logged_in_as(self, session_name):
         wd = self.app.wd

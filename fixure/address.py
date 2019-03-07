@@ -1,6 +1,5 @@
 import time
-
-from selenium.common.exceptions import InvalidElementStateException
+from selenium.common.exceptions import InvalidElementStateException, NoSuchElementException
 
 
 class AddressHelper:
@@ -43,30 +42,44 @@ class AddressHelper:
         self.data(address)
         self.submit_address()
 
-
     def add_new(self, address):
         wd = self.app.wd
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Add an address']").click()
         self.data(address)
         self.submit_address()
 
-
     def modify(self, new_address_data):
         wd = self.app.wd
-        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
+        try:
+            wd.implisitly_wait(1)
+            wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
+            wd.implisitly_wait(20)
+        except:
+            NoSuchElementException
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Update']").click()
         self.submit_address()
         self.data(new_address_data)
         self.submit_address()
 
-
-
     def delete_first_address(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
+        try:
+            wd.implisitly_wait(1)
+            wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
+            wd.implisitly_wait(20)
+        except:
+            NoSuchElementException
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Delete']").click()
         #time.sleep(2)
         alert = wd.switch_to_alert()
         alert.accept()
 
+    def count(self):
+        wd = self.app.wd
+        try:
+            wd.implisitly_wait(1)
+            wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
+            wd.implisitly_wait(20)
+        except: NoSuchElementException
+        return len(wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Delete']"))
 

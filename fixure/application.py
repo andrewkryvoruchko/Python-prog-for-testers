@@ -7,7 +7,7 @@ class Application:
 
     def __init__(self): # фикстура вызывая класс запускает конструктор инициализирующий браузер
         self.wd = webdriver.Chrome(desired_capabilities={"chromeOptions": {"args": ["--start-maximized"]}})
-        self.wd.implicitly_wait(30)
+        self.wd.implicitly_wait(20)
         self.session = SessionHelper(self) # помошнику передается объект класса Application
         self.address = AddressHelper(self) # помошнику передается объект класса Application
 
