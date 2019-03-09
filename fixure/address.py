@@ -48,14 +48,18 @@ class AddressHelper:
         self.data(address)
         self.submit_address()
 
+    def verify_page_with_addresses(self):
+        wd = self.app.wd
+        if wd.current_url.endswith("/addresses") and len(
+                wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Update']")) > 0:
+            return  # если условие if выполняется то преждевременно завершаем выполнение метода
+                    # поток выполнения кода до нижней стороки не дойдет (можно использовать и else)
+        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
+
+
     def modify(self, new_address_data):
         wd = self.app.wd
-        try:
-            wd.implisitly_wait(1)
-            wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
-            wd.implisitly_wait(20)
-        except:
-            NoSuchElementException
+        self.verify_page_with_addresses()
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Update']").click()
         self.submit_address()
         self.data(new_address_data)
@@ -63,12 +67,7 @@ class AddressHelper:
 
     def delete_first_address(self):
         wd = self.app.wd
-        try:
-            wd.implisitly_wait(1)
-            wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
-            wd.implisitly_wait(20)
-        except:
-            NoSuchElementException
+        self.verify_page_with_addresses()
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Delete']").click()
         #time.sleep(2)
         alert = wd.switch_to_alert()
@@ -76,10 +75,6 @@ class AddressHelper:
 
     def count(self):
         wd = self.app.wd
-        try:
-            wd.implisitly_wait(1)
-            wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
-            wd.implisitly_wait(20)
-        except: NoSuchElementException
+        self.verify_page_with_addresses()
         return len(wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Delete']"))
 
