@@ -1,6 +1,6 @@
 import time
 from selenium.common.exceptions import InvalidElementStateException, NoSuchElementException
-
+from model.address import Address
 
 class AddressHelper:
 
@@ -29,12 +29,20 @@ class AddressHelper:
         self.change_field_value("phone", address.home_phone)
         self.change_field_value("phone_mobile", address.mobile_phone)
         self.change_field_value("id_state", address.state)
-        self.change_field_value("alias", address.assign)
+        self.change_field_value("alias", address.title)
 
     def submit_address(self):
         wd = self.app.wd
         #time.sleep(2)
         wd.find_element_by_id("submitAddress").click()
+
+    def verify_page_with_addresses(self):
+        wd = self.app.wd
+        if wd.current_url.endswith("addresses") and len(
+                wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Update']")) > 0:
+            return  # если условие if выполняется то преждевременно завершаем выполнение метода
+            # поток выполнения кода до нижней стороки не дойдет (можно использовать и else или not)
+        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
 
     def add(self, address):
         wd = self.app.wd
@@ -44,18 +52,10 @@ class AddressHelper:
 
     def add_new(self, address):
         wd = self.app.wd
+        self.verify_page_with_addresses()
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Add an address']").click()
         self.data(address)
         self.submit_address()
-
-    def verify_page_with_addresses(self):
-        wd = self.app.wd
-        if wd.current_url.endswith("/addresses") and len(
-                wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Update']")) > 0:
-            return  # если условие if выполняется то преждевременно завершаем выполнение метода
-                    # поток выполнения кода до нижней стороки не дойдет (можно использовать и else)
-        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
-
 
     def modify(self, new_address_data):
         wd = self.app.wd
@@ -77,4 +77,14 @@ class AddressHelper:
         wd = self.app.wd
         self.verify_page_with_addresses()
         return len(wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Delete']"))
+
+    def get_addresses_list(self):
+        wd = self.app.wd
+        wd.implicitly_wait(1)
+        address_list = []
+        for element in wd.find_elements_by_xpath("//h3[@class='page-subheading']"): # получаем Title
+            id = element.text
+            address_list.append(Address(id=id))
+            wd.implicitly_wait(20)
+        return address_list
 

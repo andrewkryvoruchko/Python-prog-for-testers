@@ -7,6 +7,8 @@ class Application:
 
     def __init__(self): # фикстура вызывая класс запускает конструктор инициализирующий браузер
         self.wd = webdriver.Chrome(desired_capabilities={"chromeOptions": {"args": ["--start-maximized"]}})
+        #self.wd = webdriver.Firefox()
+        #self.wd.maximize_window()
         self.wd.implicitly_wait(20)
         self.session = SessionHelper(self) # помошнику передается объект класса Application
         self.address = AddressHelper(self) # помошнику передается объект класса Application
@@ -25,4 +27,5 @@ class Application:
     def open_home_page(self):
         wd = self.wd
         wd.get("http://prestashop.qatestlab.com.ua/ru/")
+        # баг в Firefoxe заходит в английскую версию сайта не смотря на указание /ru/
 

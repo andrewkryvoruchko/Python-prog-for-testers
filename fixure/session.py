@@ -1,9 +1,11 @@
-
+from selenium.common.exceptions import NoSuchElementException
 
 
 class SessionHelper:
 
-    def __init__(self, app): # app принимает объект self класса Application
+    session_name = None
+
+    def __init__(self, app):  # app принимает объект self класса Application
         self.app = app
 
     def login(self, username, password):
@@ -16,37 +18,33 @@ class SessionHelper:
 
     def logout(self):
         wd = self.app.wd
-        wd.find_element_by_xpath("//div[@class='row']//a[text()='Выйти']").click()
+        wd.find_element_by_xpath("//div[@class='row']//a[@class='logout']").click()
 
     def is_logged_in(self):
         wd = self.app.wd
         wd.implicitly_wait(1)
-        ex = len(wd.find_elements_by_xpath("//div[@class='row']//a[text()='Выйти']")) > 0
-        wd.implicitly_wait(20)
-        return ex
+        return len(wd.find_elements_by_xpath("//div[@class='row']//a[@class='logout']")) > 0
 
-    def is_logged_in_as(self, session_name):
+    def is_logged_in_as(self, s_name):
         wd = self.app.wd
-        return wd.find_element_by_xpath(
-            "//header[@id='header']//a[@title='Просмотреть мою учетную запись покупателя']/span"
-            ).text == ""+session_name+"" # выполняется проверка на соответствие имен
+        return wd.find_element_by_css_selector(".header_user_info a.account span").text == ""+s_name+""
+        # выполняется проверка на соответствие имен
 
     def ensure_logout(self):
         if self.is_logged_in():
             self.logout()
 
-    def ensure_login(self, username, password):
+    def ensure_login(self, username, password):  # урок 13
         wd = self.app.wd
+        global session_name
         if self.is_logged_in():
-            session_name = wd.find_element_by_xpath(
-                "//header[@id='header']//a[@title='Просмотреть мою учетную запись покупателя']/span"
-                ).text
             if self.is_logged_in_as(session_name):
+                wd.implicitly_wait(20)
                 return
             else:
                 self.logout()
+        wd.implicitly_wait(20)
         self.login(username, password)
-
-
+        session_name =  wd.find_element_by_css_selector(".header_user_info a.account span").text
 
 
