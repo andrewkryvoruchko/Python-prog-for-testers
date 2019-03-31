@@ -18,3 +18,14 @@ class Address:
         self.state = state
         self.title = title
         self.id = id
+
+    def __repr__(self):  # representation выводит на консоль не ссылку на объект а значение (содержимое объекта)
+        return "%s:%s:%s" % (self.id, self.first_name, self.title)
+
+    def __eq__(self, other):  # функция сравнивает именно по значению, смыслу
+        return (self.id is None or other.id is None or self.id == other.id) \
+               and self.first_name == other.first_name and self.title == other.title
+
+    def title(self):  # функция возвращающая ключ используемый для сортировки
+        return self.title
+

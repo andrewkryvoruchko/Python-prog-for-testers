@@ -57,6 +57,14 @@ class AddressHelper:
         self.data(address)
         self.submit_address()
 
+    def add_temporary(self, address):
+        wd = self.app.wd
+        wd.implicitly_wait(20)
+        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Add an address']").click()
+        self.data(address)
+        self.submit_address()
+
+
     def modify(self, new_address_data):
         wd = self.app.wd
         self.verify_page_with_addresses()
@@ -69,22 +77,24 @@ class AddressHelper:
         wd = self.app.wd
         self.verify_page_with_addresses()
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Delete']").click()
-        #time.sleep(2)
         alert = wd.switch_to_alert()
         alert.accept()
 
     def count(self):
         wd = self.app.wd
         self.verify_page_with_addresses()
+        wd.implicitly_wait(2)
         return len(wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Delete']"))
 
-    def get_addresses_list(self):
+    def get_address_list(self):
         wd = self.app.wd
         wd.implicitly_wait(1)
         address_list = []
-        for element in wd.find_elements_by_xpath("//h3[@class='page-subheading']"): # получаем Title
-            id = element.text
-            address_list.append(Address(id=id))
+        for element in wd.find_elements_by_xpath("//div[@class='col-xs-12 col-sm-6 address']"):
+            id = element.find_element_by_css_selector("h3.page-subheading").text
+            name = element.find_element_by_css_selector("span.address_name").text
+            title = element.find_element_by_css_selector("h3.page-subheading").text
+            address_list.append(Address(id=id, first_name=name, title=title))  # прикольная штука
             wd.implicitly_wait(20)
         return address_list
 
