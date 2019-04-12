@@ -38,11 +38,14 @@ class AddressHelper:
 
     def verify_page_with_addresses(self):
         wd = self.app.wd
+        wd.implicitly_wait(1)
         if wd.current_url.endswith("addresses") and len(
                 wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Update']")) > 0:
             return  # если условие if выполняется то преждевременно завершаем выполнение метода
             # поток выполнения кода до нижней стороки не дойдет (можно использовать и else или not)
+        wd.find_element_by_css_selector("a.account").click()
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Addresses']").click()
+        wd.implicitly_wait(20)
 
     def add(self, address):
         wd = self.app.wd
@@ -56,6 +59,7 @@ class AddressHelper:
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Add an address']").click()
         self.data(address)
         self.submit_address()
+        self.address_cache = None
 
     def add_temporary(self, address):
         wd = self.app.wd
@@ -63,22 +67,30 @@ class AddressHelper:
         wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Add an address']").click()
         self.data(address)
         self.submit_address()
+        self.address_cache = None
 
+    def delete_first_address(self):
+        self.delete_by_index(0)
 
-    def modify(self, new_address_data):
+    def delete_by_index(self, index):
         wd = self.app.wd
         self.verify_page_with_addresses()
-        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Update']").click()
+        wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Delete']")[index].click()
+        alert = wd.switch_to_alert()
+        alert.accept()
+        self.address_cache = None
+
+    def modify_first_address(self, new_address_data):
+        self.modify_by_index(0, new_address_data)
+
+    def modify_by_index(self, index, new_address_data):
+        wd = self.app.wd
+        self.verify_page_with_addresses()
+        wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Update']")[index].click()
         self.submit_address()
         self.data(new_address_data)
         self.submit_address()
-
-    def delete_first_address(self):
-        wd = self.app.wd
-        self.verify_page_with_addresses()
-        wd.find_element_by_xpath("//div[@id='center_column']//a[@title='Delete']").click()
-        alert = wd.switch_to_alert()
-        alert.accept()
+        self.address_cache = None
 
     def count(self):
         wd = self.app.wd
@@ -86,15 +98,18 @@ class AddressHelper:
         wd.implicitly_wait(2)
         return len(wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Delete']"))
 
+    address_cache = None
+
     def get_address_list(self):
-        wd = self.app.wd
-        wd.implicitly_wait(1)
-        address_list = []
-        for element in wd.find_elements_by_xpath("//div[@class='col-xs-12 col-sm-6 address']"):
-            id = element.find_element_by_css_selector("h3.page-subheading").text
-            name = element.find_element_by_css_selector("span.address_name").text
-            title = element.find_element_by_css_selector("h3.page-subheading").text
-            address_list.append(Address(id=id, first_name=name, title=title))  # прикольная штука
-            wd.implicitly_wait(20)
-        return address_list
+        if self.address_cache is None or self.address_cache == []:
+            wd = self.app.wd
+            wd.implicitly_wait(1)
+            self.address_cache = []
+            for element in wd.find_elements_by_xpath("//div[@class='col-xs-12 col-sm-6 address']"):
+                id = element.find_element_by_css_selector("h3.page-subheading").text
+                name = element.find_element_by_css_selector("span.address_name").text
+                title = element.find_element_by_css_selector("h3.page-subheading").text
+                self.address_cache.append(Address(id=id, first_name=name, title=title))  # прикольная штука
+                wd.implicitly_wait(20)
+        return list(self.address_cache)
 
