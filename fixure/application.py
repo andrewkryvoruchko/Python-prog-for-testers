@@ -2,6 +2,7 @@
 from selenium import webdriver
 from fixure.session import SessionHelper
 from fixure.address import AddressHelper
+from fixure.contact import ContactHelper
 
 class Application:
 
@@ -10,8 +11,9 @@ class Application:
         #self.wd = webdriver.Firefox()
         #self.wd.maximize_window()
         self.wd.implicitly_wait(20)
-        self.session = SessionHelper(self) # помошнику передается объект класса Application
-        self.address = AddressHelper(self) # помошнику передается объект класса Application
+        self.session = SessionHelper(self)
+        self.address = AddressHelper(self)  # помошнику передается объект self класса Application
+        self.contact = ContactHelper(self)
 
     def is_valid(self):
         try:                    # блок с перехватом исключений

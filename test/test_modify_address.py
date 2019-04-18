@@ -18,7 +18,7 @@ def test_modify(app):
     app.address.modify_by_index(index, address)
     new_address_list = app.address.get_address_list()
     assert len(old_address_list) == len(new_address_list)
-    old_address_list[0] = address
+    old_address_list[index] = address
     assert sorted(old_address_list, key=Address.title) == sorted(new_address_list, key=Address.title)
 
 '''
@@ -31,7 +31,7 @@ def test_modify_street(app):
     new_address_list = app.address.get_address_list()
     assert len(old_address_list) == len(new_address_list)
     old_address_list[0] = address
-    print('\n', '* * * old', old_address_list)
-    print('* * * new', new_address_list)
+    print('\n* * * old', old_address_list)
+    print(' * * * new', new_address_list)
     assert sorted(old_address_list, key=Address.title) == sorted(new_address_list, key=Address.title)
 '''

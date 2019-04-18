@@ -5,9 +5,9 @@ from model.address import Address
 
 def test_add_first_address(app): # так же параметер app принимает объект Application из фикстуры
     old_address_list = app.address.get_address_list()
-    address = Address(first_name="andreW", last_name="kriv", company="IT", address="Ivana Franka 5/16",
-                            zipcode="12345", city="Kyiv", country="Украина", home_phone="123456",
-                            mobile_phone="123456", state="Киевская область", title="ANDR")
+    address = Address(first_name="Andrew", last_name="Kriv", company="IT", address="Ivana Franka 5/16",
+                            zipcode="12345", city="Kyiv", country="Украина", home_phone="+(1) 11-111",
+                            mobile_phone="+(2) 22-222", state="Киевская область", title="AK")
     app.address.add(address)
     assert len(old_address_list) + 1 == app.address.count()
     new_address_list = app.address.get_address_list()
@@ -17,16 +17,24 @@ def test_add_first_address(app): # так же параметер app прини
 
 def test_add_second_address(app):
     old_address_list = app.address.get_address_list()
-    address = Address(first_name="andrew", last_name="kriV", company="IT", address="George Washington 20",
-                      zipcode="67890", city="Columbus", country="США", home_phone="789123",
-                      mobile_phone="789123", state="Alabama", title="MUCHO")
+    address = Address(first_name="Piter", last_name="Johnson", company="IT", address="George Washington 20",
+                      zipcode="67890", city="Columbus", country="США", home_phone="+(3) 33-333",
+                      mobile_phone="+(4) 44-444", state="Alabama", title="PJ")
     app.address.add_new(address)
     assert len(old_address_list) + 1 == app.address.count()
     new_address_list = app.address.get_address_list()
     old_address_list.append(address)
     assert sorted(old_address_list, key=Address.title) == sorted(new_address_list, key=Address.title)
 
-#    print('\n', '* * * old', old_address_list)
-#    print(' * * * new', new_address_list)
+def test_add_third_address(app):
+    old_address_list = app.address.get_address_list()
+    address = Address(first_name="John", last_name="Smith", company="IT", address="Linkoln Avenu 15",
+                      zipcode="11121", city="Trenton", country="США", home_phone="+(5) 55-555",
+                      mobile_phone="+(6) 66-666", state="New Jersey", title="JS")
+    app.address.add_new(address)
+    assert len(old_address_list) + 1 == app.address.count()
+    new_address_list = app.address.get_address_list()
+    old_address_list.append(address)
+    assert sorted(old_address_list, key=Address.title) == sorted(new_address_list, key=Address.title)
 
 
