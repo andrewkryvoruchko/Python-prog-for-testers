@@ -16,7 +16,10 @@ class Address:
         self.home_phone = home_phone
         self.mobile_phone = mobile_phone
         self.state = state
-        self.title = title
+        if title != None:
+            self.title = title.upper()
+        else:
+            self.title = title
         self.id = id
 
     def __repr__(self):  # representation выводит на консоль не ссылку на объект а значение (содержимое объекта)

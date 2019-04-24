@@ -1,5 +1,6 @@
 
 from model.contact import Contact
+import re
 
 class ContactHelper:
 
@@ -46,3 +47,14 @@ class ContactHelper:
         all_phones = home_phone + mobile_phone
         return Contact(id=id, first_name=first_name, last_name=last_name,
                        home_phone=home_phone, mobile_phone=mobile_phone, all_phones=all_phones)
+
+    def clear(self, s):
+        return re.sub("[-()+ ]", "", s)
+
+    def merge_phones(self, contact):
+        return "".join(filter(lambda x: x != "",  # соединяем без всяких символов и отфильтровуем пустые строки
+                              map(lambda x: self.clear(x),  # очищаем от символов
+                                  filter(lambda x: x is not None,  # отфильтровуем значение None
+                                         [contact.home_phone, contact.mobile_phone]))))
+
+#return "".join(map(lambda x: clear(x), [contact.home_phone, contact.mobile_phone]))  # в нашем случае достаточно
