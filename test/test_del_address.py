@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from model.address import Address
 from random import randrange
-
+import time
 
 def test_delete_some_address(app):
     if app.address.count() == 0:

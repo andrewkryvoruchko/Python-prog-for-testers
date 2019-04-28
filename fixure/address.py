@@ -1,4 +1,6 @@
 import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import InvalidElementStateException, NoSuchElementException
 from model.address import Address
 
@@ -69,9 +71,11 @@ class AddressHelper:
     def delete_by_index(self, index):
         wd = self.app.wd
         self.verify_page_with_addresses()
-        wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Delete']")[index].click()
+        element = wd.find_elements_by_xpath("//div[@id='center_column']//a[@title='Delete']")[index]
+        element.click()
         alert = wd.switch_to_alert()
         alert.accept()
+        WebDriverWait(wd, 10).until(EC.staleness_of(element))
         self.address_cache = None
 
     def modify_first(self, new_address_data):
