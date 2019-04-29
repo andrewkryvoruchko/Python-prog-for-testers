@@ -75,7 +75,7 @@ class AddressHelper:
         element.click()
         alert = wd.switch_to_alert()
         alert.accept()
-        WebDriverWait(wd, 10).until(EC.staleness_of(element))
+        WebDriverWait(wd, 10).until(EC.staleness_of(element))  # проверка исчезновения элемента (ожидание)
         self.address_cache = None
 
     def modify_first(self, new_address_data):

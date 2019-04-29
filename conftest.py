@@ -3,22 +3,26 @@
 
 from fixure.application import Application
 import pytest
+import json
+import os.path
 
 fixture = None
+target = None
 # вынесение метода login из тестов в фикстуру делает его общим для всей сессии
 # проверка с условным операторм if говорит если фикстура есть то используй ее
 # но плюс к этому добавляет стабильность, если она ошибочно упала создай новую
 @pytest.fixture
 def app(request):
     global fixture
-    browser = request.config.getoption("--browser")
-    base_url = request.config.getoption("--baseUrl")
-    if fixture is None:
-        fixture = Application(browser=browser, base_url=base_url)
-    else:
-        if not fixture.is_valid(): # если возвращается False создай фикстуру заново (запусти браузер)
-            fixture = Application(browser=browser, base_url=base_url)
-    fixture.session.ensure_login(username="andrew1973@gmail.com", password="giovanni")
+    global target
+    browser = request.config.getoption("--browser")  # принимается значение переданное из консоли
+    if target is None:
+        path_to_config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
+        with open(path_to_config_file) as config_file:  # читаем открываем файл
+            target = json.load(config_file)
+    if fixture is None or not fixture.is_valid():
+        fixture = Application(browser=browser, base_url=target['baseUrl'])
+    fixture.session.ensure_login(username=target['username'], password=target['password'])
     return fixture  # возвращает объект Application в тест
 
 # для сохранения оптимизации разделяем инициализацию и финализацию
@@ -33,7 +37,8 @@ def stop(request):
     request.addfinalizer(fin)
     return fixture  # возвращает объект Application в тест
 
-def pytest_addoption(parser):  # добавляем опции pytest для передачи параметров из командной строки
+# добавляем опции pytest принимающие значения параметров в командной строке
+def pytest_addoption(parser):  # (хук - зацепка специальная функция)
     parser.addoption("--browser", action="store", default="firefox")
-    parser.addoption("--baseUrl", action="store", default="http://prestashop.qatestlab.com.ua/ru/")
+    parser.addoption("--target", action="store", default="target.json")
 
