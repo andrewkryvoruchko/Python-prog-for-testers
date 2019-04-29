@@ -2,14 +2,12 @@
 
 from model.address import Address
 from random import randrange
+from data.add_address import fixed_testdata
 
 
 def test_modify(app):
     if app.address.count() == 0:
-        app.address.add(Address(first_name="ANDREW", last_name="KRIV", company="IT",
-                                          address="Ivana Franka 5/16", zipcode="12345", city="Kyiv",
-                                          country="Украина", home_phone="123456", mobile_phone="123456",
-                                          state="Киевская область", title="AN"))
+        app.address.add(fixed_testdata[0])
     old_address_list = app.address.get_address_list()
     index = randrange(len(old_address_list))
     address = Address(first_name="VIKA", address="10Th Avenue")
