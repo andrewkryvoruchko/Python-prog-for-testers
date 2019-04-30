@@ -1,5 +1,5 @@
 
-from data.add_address import fixed_testdata
+from data.addresses import fixed_testdata
 
 
 # прямая проверка производится обрезка

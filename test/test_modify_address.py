@@ -2,7 +2,7 @@
 
 from model.address import Address
 from random import randrange
-from data.add_address import fixed_testdata
+from data.addresses import fixed_testdata
 
 
 def test_modify(app):

@@ -17,8 +17,8 @@ def app(request):
     global target
     browser = request.config.getoption("--browser")  # принимается значение переданное из консоли
     if target is None:
-        path_to_config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
-        with open(path_to_config_file) as config_file:  # читаем открываем файл
+        path_config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
+        with open(path_config_file) as config_file:  # читаем открываем файл
             target = json.load(config_file)
     if fixture is None or not fixture.is_valid():
         fixture = Application(browser=browser, base_url=target['baseUrl'])

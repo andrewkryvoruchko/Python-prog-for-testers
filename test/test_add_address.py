@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from model.address import Address
-from data.add_address import fixed_testdata as testdata
+from data.addresses import fixed_testdata as testdata
 import pytest
 
 

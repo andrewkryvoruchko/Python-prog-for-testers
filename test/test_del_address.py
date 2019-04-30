@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from random import randrange
-from data.add_address import fixed_testdata
+from data.addresses import fixed_testdata
 
 
 def test_delete_some_address(app):
