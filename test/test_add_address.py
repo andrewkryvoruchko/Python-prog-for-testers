@@ -3,8 +3,8 @@ from model.address import Address
 
 
 # при запусте тестов вначале определяется и запускается фикстура метод app указанный в параметре теста
-def test_add_address(app, data_addresses): # так же параметер app принимает объект Application из фикстуры
-    address = data_addresses
+def test_add_address(app, json_addresses): # так же параметер app принимает объект Application из фикстуры
+    address = json_addresses
     old_address_list = app.address.get_address_list()
     app.address.add(address)
     assert len(old_address_list) + 1 == app.address.count()

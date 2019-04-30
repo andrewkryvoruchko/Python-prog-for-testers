@@ -4,7 +4,7 @@ from model.address import Address
 import random
 import string
 import os.path
-import json
+import jsonpickle
 import getopt  # чтение опций командной строки
 import sys     # для получения опций командной строки
 
@@ -54,8 +54,11 @@ random_testdata = [
 
 # прописываем путь к файлу относительно conftest, открываем его на записись, прописываем данные
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", f)
+
+# прописываем класс для объекта типа адрес для дальнейшего различения объектов разного типа (контакты и тп)
+# преобразовываем данные в формат json и записываем их в файл
 with open(file, "w") as out:
-    out.write(json.dumps(random_testdata, default=lambda x: x.__dict__, indent=2))
-# dumps превращает данные в строку в формате json,
-# default говорит как пакет json должен преобразовать объекты типа group в формате json (превратить словарь),
+    jsonpickle.set_encoder_options('simplejson', indent=2)
+    out.write(jsonpickle.encode(random_testdata))
 # indent разбивает строку на отдельные строки по признаку ключ-значение с двумя отступами
+# encode перекодирует .py в .json
