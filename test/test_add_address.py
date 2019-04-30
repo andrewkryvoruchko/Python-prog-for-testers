@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from model.address import Address
-from data.addresses import fixed_testdata as testdata
-import pytest
 
 
 # при запусте тестов вначале определяется и запускается фикстура метод app указанный в параметре теста
-@pytest.mark.parametrize("address", testdata, ids=[repr(x) for x in testdata])
-def test_add_address(app, address): # так же параметер app принимает объект Application из фикстуры
+def test_add_address(app, data_addresses): # так же параметер app принимает объект Application из фикстуры
+    address = data_addresses
     old_address_list = app.address.get_address_list()
     app.address.add(address)
     assert len(old_address_list) + 1 == app.address.count()
